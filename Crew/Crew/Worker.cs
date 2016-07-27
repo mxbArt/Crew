@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace Crew
 {
+    enum WorkingPosition{
+        director = 4,
+        secretary = 3,
+        bookkeper = 2,
+        cleaner = 1,
+    }
+
     class Worker : IComparable<Worker>
     {
         private string _name;
-        private string _wposition;
+        private WorkingPosition _wposition;
 
         public string Name
         {
@@ -27,7 +34,7 @@ namespace Crew
             }
         }
 
-        public string WorkingPosition
+        public WorkingPosition WorkingPosition
         {
             get
             {
@@ -43,7 +50,7 @@ namespace Crew
             }
         }
 
-        public Worker(string newName, string newPosition)
+        public Worker(string newName, WorkingPosition newPosition)
         {
             _name = newName;
             _wposition = newPosition;
@@ -61,12 +68,12 @@ namespace Crew
 
        public static bool operator == (Worker left, Worker right)
         {
-            return (left._name == right._name && left._name == right._name);
+            return (left._name == right._name && left._wposition == right._wposition);
         }
 
         public static bool operator != (Worker left, Worker right)
         {
-            return (left._name != right._name | left._name != right._name);
+            return (left._name != right._name | left._wposition != right._wposition);
         }
     }
 
@@ -74,10 +81,7 @@ namespace Crew
     {
         public int Compare(Worker x, Worker y)
         {
-            if (x.WorkingPosition == null && y.WorkingPosition == null) return 0;
-            else if (x.WorkingPosition == null) return -1;
-            else if (y.WorkingPosition == null) return 1;
-            else return x.WorkingPosition.CompareTo(y.WorkingPosition);
+            return y.WorkingPosition.CompareTo(x.WorkingPosition);
         }
     }
 }

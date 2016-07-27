@@ -11,25 +11,26 @@ namespace Crew
         static void Main(string[] args)
         {
             List<Worker> l = new List<Worker>();
-            l.Add(new Worker("Dasha", "secretary"));
-            l.Add(new Worker("Aleksadr", "bookkeeper"));
-            l.Add(new Worker("Pavel", "bookkeeper"));
+            l.Add(new Worker("Erat", WorkingPosition.director));
+            l.Add(new Worker("Dasha", WorkingPosition.secretary));
+            l.Add(new Worker("Aleksadr", WorkingPosition.cleaner));
+            l.Add(new Worker("Pavel", WorkingPosition.bookkeper));
             l.Sort(new EqualityComparer());
             foreach (Worker w in l)
             {
                 w.Write();
             }
-
+            Console.WriteLine();
             Crew staff = new Crew();
-            staff.Add(new Worker("Aleksadr", "bookkeeper"));
-            staff.Add(new Worker("Pavel", "bookkeeper"));
-            staff.Insert(1, new Worker("Dasha", "secretary"));
+            staff.Add(new Worker("Aleksadr", WorkingPosition.cleaner));
+            staff.Add(new Worker("Pavel", WorkingPosition.bookkeper));
+            staff.Insert(1, new Worker("Dasha", WorkingPosition.secretary));
             foreach (Worker w in staff)
             {
                 w.Write();
             }
 
-            if (staff.Contains(new Worker("Dasha", "secretary")))
+            if (staff.Contains(new Worker("Dasha", WorkingPosition.secretary)))
             {
                 Console.WriteLine("Dasha is a member of staff");
             }
@@ -37,7 +38,7 @@ namespace Crew
             {
                 Console.WriteLine("Dasha is not a member of staff");
             }
-            staff.Remove(new Worker("Pavel", "bookkeeper"));
+            staff.Remove(new Worker("Pavel", WorkingPosition.bookkeper));
             staff.RemoveAt(0);
             Console.WriteLine(staff.Count);
 
